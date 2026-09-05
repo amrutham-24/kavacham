@@ -28,7 +28,24 @@ MQTT Broker
     ▼
 Dashboard
 ```
-
+MPU6050:
+```
+High acceleration / impact
+        ↓
+orientation change
+        ↓
+little/no movement
+        ↓
+fall suspected
+        ↓
+countdown
+        ↓
+worker cancels?
+   ↓             ↓
+ YES            NO
+ ↓               ↓
+cancel       EMERGENCY
+```
 ---
 
 ## LoRa Secondary Path
