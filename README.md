@@ -1,4 +1,4 @@
-# kavacham
+# Kavacham
 
 A multi-hop, fault-tolerant underground worker safety network that maintains communication and situational awareness despite loss of conventional connectivity.
 
@@ -101,7 +101,75 @@ BLE-based multi-hop WSN
 rather than claiming full Bluetooth Mesh compliance.
 
 ---
-
+## MQTT Publishing guide
+```
+{
+  "worker_id": "WSN-1",
+  "timestamp": 1725272400000,
+  "node_type": "worker",
+  "firmware_version": "1.2.0",
+  "battery_percent": 85,
+  "signal_strength": {
+    "rssi": -68,
+    "snr": 12
+  },
+  "sensors": {
+    "gas": {
+      "sensor": "MQ-6",
+      "ppm": 742,
+      "raw_adc": 756,
+      "threshold_warning": 300,
+      "threshold_critical": 500,
+      "unit": "ppm"
+    },
+    "temperature": {
+      "sensor": "DHT11",
+      "celsius": 31.2,
+      "fahrenheit": 88.2,
+      "humidity_percent": 65,
+      "unit": "celsius"
+    },
+    "motion": {
+      "sensor": "MPU6050",
+      "accel_x": -245,
+      "accel_y": 128,
+      "accel_z": 16340,
+      "accel_magnitude": 16358,
+      "fall_threshold": 30000,
+      "fall_detected": false,
+      "impact_g": 1.5
+    },
+    "dust": {
+      "sensor": "Sharp GP2Y1010AU0F",
+      "raw_adc": 450,
+      "aqi": 95,
+      "unit": "AQI"
+    }
+  },
+  "alerts": {
+    "sos_pressed": true,
+    "fall_detected": false,
+    "gas_warning": false,
+    "gas_critical": true,
+    "temperature_warning": false,
+    "dust_warning": false
+  },
+  "system": {
+    "uptime_seconds": 3600,
+    "mqtt_connected": true,
+    "wifi_quality": "good",
+    "cpu_temp": 45,
+    "heap_free": 120000
+  },
+  "alert_level": 3,
+  "alert_reason": "Manual SOS + Gas Critical",
+  "mesh": {
+    "hop_count": 0,
+    "relay_nodes": ["WSN-1"],
+    "path": "Direct to Gateway"
+  }
+}
+```
 ## ADD-ONS
 
 ### Packet Priority
