@@ -1,0 +1,50 @@
+#define MQ135_PIN 34
+#define BUZZER_PIN 25
+
+// Set your gas detection level here
+int gasThreshold = 150;
+
+void setup() {
+  Serial.begin(115200);
+
+  pinMode(BUZZER_PIN, OUTPUT);
+  digitalWrite(BUZZER_PIN, LOW);
+
+  Serial.println("================================");
+  Serial.println("MQ-135 Smoke,flame + Buzzer Test");
+  Serial.println("================================");
+
+  Serial.println("Warming up MQ-135...");
+  delay(60000);   // 1 minute
+
+  Serial.println("Sensor ready!");
+}
+
+void loop() {
+
+  // Read MQ-6
+  int gasValue = analogRead(MQ135_PIN);
+
+  Serial.print("MQ-135 Value: ");
+  Serial.println(gasValue);
+
+  // Gas level check
+  if (gasValue > gasThreshold) {
+
+    digitalWrite(BUZZER_PIN, HIGH);
+
+    Serial.println("!!! GAS LEVEL ABOVE THRESHOLD !!!");
+    Serial.println("BUZZER ON");
+
+  } else {
+
+    digitalWrite(BUZZER_PIN, LOW);
+
+    Serial.println("Gas level normal");
+    Serial.println("BUZZER OFF");
+  }
+
+  Serial.println("-----------------------------");
+
+  delay(500);
+}
